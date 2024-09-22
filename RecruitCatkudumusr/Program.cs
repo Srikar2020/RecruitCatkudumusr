@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using RecruitCatkudumusr.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<RecruitCatkudumusrContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RecruitCatkudumusrContext") ?? throw new InvalidOperationException("Connection string 'RecruitCatkudumusrContext' not found.")));
 
 var app = builder.Build();
 
